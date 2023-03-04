@@ -7,7 +7,7 @@ var rename = require('gulp-rename');
 const cleanCSS = require('gulp-clean-css'); 
 var minify = require('gulp-minify');
 var concat = require('gulp-concat');
-
+// var gm = require('gulp-gm');
 
 
 // ca sa transformam fisiere sass/scss in fisiere css: gulp sass
@@ -72,8 +72,9 @@ gulp.task('images', () => {
   sizes.forEach((size) => {
     stream = gulp
 //     calea catre imaginile pe care le dorim sa le optimizam
-      //.src('assets/img/slide2.png')
-      .src('assets/images/*')  // recursiv in toate subfolderele
+      //.src('assets/images')
+      .src('dev/img/*') 
+       // recursiv in toate subfolderele
       // daca apare o eroare nu se opreste si sare peste
       //.pipe(plumber())
 //     resize image
@@ -113,6 +114,6 @@ gulp.task('imagestowebp', () => {
 });
 
 function watch_img() {
-  return gulp.watch(['assets/images'], gulp.series('images','imagestowebp'));
+  return gulp.watch(['dev/img'], gulp.series('images','imagestowebp'));
 }
 exports.buildwebp = gulp.series(watch_img);
